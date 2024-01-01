@@ -1,8 +1,15 @@
-import mongoose from "mongoose";
 
+import mongoose, { Document } from "mongoose";
 
-const furnitureSchema = new mongoose.Schema({
+interface FurnitureDocument extends Document {
+	name: string;
+	image?: string;
+	description?: string;
+	price: number;
+	salePrice: number;
+}
 
+const furnitureSchema = new mongoose.Schema<FurnitureDocument>({
 	name: {
 		type: String,
 		require: true
@@ -23,4 +30,5 @@ const furnitureSchema = new mongoose.Schema({
 	}
 })
 
-export const Furniture = mongoose.model('furniure', furnitureSchema);
+export { furnitureSchema }
+// export const Furniture = mongoose.model('furniure', furnitureSchema);
