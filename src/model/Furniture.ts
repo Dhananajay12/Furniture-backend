@@ -23,4 +23,4 @@ const furnitureSchema = new mongoose.Schema({
 	}
 })
 
-const Furniture = mongoose.model('furniure', furnitureSchema);
+export const Furniture = mongoose.model('furniure', furnitureSchema);
