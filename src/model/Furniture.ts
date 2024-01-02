@@ -12,21 +12,22 @@ interface FurnitureDocument extends Document {
 const furnitureSchema = new mongoose.Schema<FurnitureDocument>({
 	name: {
 		type: String,
-		require: true
+		required: true
 	},
 	image: {
 		type: String,
 	},
 	description: {
 		type: String,
+		required: true
 	},
 	price: {
 		type: Number,
-		default: 0
+		required: true
 	},
 	salePrice: {
 		type: Number,
-		default: 0
+		required: true
 	}
 })
 
