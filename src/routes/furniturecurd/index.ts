@@ -1,11 +1,12 @@
 import express = require('express');
+import { Request, Response } from 'express';
+import { getAllFurnitureController } from './controller';
 
-const router = express.Router();
+const router: express.Router = express.Router();
 
-router.get('/', (req, res) => {
-
-	console.log("agya")
-	res.json({message:"success"});
+router.get('/', async (req, res) => {
+	const response = await getAllFurnitureController()
+	res.json(response);
 })
 
 
