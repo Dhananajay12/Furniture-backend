@@ -2,18 +2,22 @@ import { connections } from "./connection";
 import express = require('express');
 import { Express,} from "express";;
 import { router } from "./src/routes";
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
+import { authencatorMiddleware } from "./src/middleware/Authenticator";
+import { User } from "./src/model";
+// authencatorMiddleware
+
+
+dotenv.config()
 
 const app: Express = express();
 
-dotenv.config()
 
 app.use(express.json())
 app.use('/api/v3', router)
 
 
 connections();
-
 
 app.listen(4000, async  () => {
 

@@ -1,5 +1,7 @@
 
 import mongoose from 'mongoose';
+import { authencatorMiddleware } from './src/middleware/Authenticator';
+// authencatorMiddleware();
 
 function connections(): void {
 
