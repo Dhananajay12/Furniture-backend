@@ -9,7 +9,6 @@ router.post('/login', (req:Request, res: Response) => {
 })
 
 router.post('/register', (req: Request, res: Response) => {
-	console.log("agya")
 	res.json({ message: "success" });
 })
 
