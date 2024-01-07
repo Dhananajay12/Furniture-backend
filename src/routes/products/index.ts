@@ -1,26 +1,27 @@
 import express = require('express');
 import { Request, Response } from 'express';
-import { createFurnitureController, deleteFurnitureController, getAllFurnitureController, updateFurnitureController } from './controller';
+import { createProductController, deleteProductController, getAllProductController, updateProductController } from './controller';
+// import { createFurnitureController, deleteFurnitureController, getAllFurnitureController, updateFurnitureController } from './controller';
 
 const router: express.Router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
-	const response = await getAllFurnitureController()
+	const response = await getAllProductController()
 	res.json(response);
 })
 
 router.post('/create', async (req:Request, res:Response) => {
-	const response = await createFurnitureController(req.body)
+	const response = await createProductController(req.body)
 	res.json(response);
 })
 
 router.put('/update', async (req: Request, res: Response) => {
-	const response = await updateFurnitureController(req.body)
+	const response = await updateProductController(req.body)
 	res.json(response);
 })
 
 router.delete('/detele', async (req: Request, res: Response) => {
-	const response = await deleteFurnitureController(req.body)
+	const response = await deleteProductController(req.body)
 	res.json(response);
 })
 

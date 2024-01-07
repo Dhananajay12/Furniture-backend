@@ -5,25 +5,16 @@ import { createHmac, randomBytes } from 'crypto'
 
 interface UserDocument extends Document {
 
-	userId: string,
-	firstName: string,
-	lastName: string,
+	fullName: string,
 	phone: number,
 	email: string,
 	salt: string,
-	password: string
+	password: string,
+	role:string
 }
 
 const userSchema = new mongoose.Schema<UserDocument>({
-	userId: {
-		type: String,
-		required: true,
-	},
-	firstName: {
-		type: String,
-		required: true
-	},
-	lastName: {
+	fullName: {
 		type: String,
 		required: true
 	},
@@ -37,6 +28,10 @@ const userSchema = new mongoose.Schema<UserDocument>({
 	},
 	salt: {
 		type: String
+	},
+	role:{
+   type:String,
+	 enum:['user','admin']
 	},
 	password: {
 		type: String,

@@ -6,7 +6,7 @@ interface FurnitureUpdateRequest {
 	_id: string; // or whatever type _id should be
 }
 
-const getAllFurnitureController = async () => {
+const getAllProductController = async () => {
 	try {
 		const getAllFurnitureData = await Products.read.find();
 
@@ -17,7 +17,7 @@ const getAllFurnitureController = async () => {
 	}
 }
 
-const createFurnitureController = async (req: object) => {
+const createProductController = async (req: object) => {
 	try {
 		const createData = await Products.write.create({
 			...req
@@ -31,7 +31,7 @@ const createFurnitureController = async (req: object) => {
 }
 
 
-const updateFurnitureController = async (req: FurnitureUpdateRequest) => {
+const updateProductController = async (req: FurnitureUpdateRequest) => {
 	try {
 		const createData = await Products.write.findByIdAndUpdate(req._id, { ...req }, { new: true });
 
@@ -42,7 +42,7 @@ const updateFurnitureController = async (req: FurnitureUpdateRequest) => {
 	}
 }
 
-const deleteFurnitureController = async (req: FurnitureUpdateRequest) => {
+const deleteProductController = async (req: FurnitureUpdateRequest) => {
 	try {
 		const createData = await Products.write.findByIdAndUpdate(req._id);
 
@@ -55,8 +55,8 @@ const deleteFurnitureController = async (req: FurnitureUpdateRequest) => {
 
 
 export {
-	getAllFurnitureController,
-	createFurnitureController,
-	updateFurnitureController,
-	deleteFurnitureController
+	getAllProductController,
+	createProductController,
+	updateProductController,
+	deleteProductController
 }
