@@ -6,20 +6,6 @@ import { ProductVariant } from '../../model';
 const router: express.Router = express.Router();
 
 
-// setTimeout(async () => {
-
-// 	const data1 = await ProductVariant.read.find()
-
-// 	// const data = await ProductVariant.write.create({
-// 	// 	name: '300gms',
-// 	// 	sku: 'sku-dm-202'
-// 	// })
-// 	console.log(data1)
-
-// }, 2000);
-
-
-
 router.get('/' , async (req:Request,res:Response) =>{
 	const response = await getAllCategoriesController();
 	res.json(response);
