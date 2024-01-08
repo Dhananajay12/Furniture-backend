@@ -1,12 +1,16 @@
 import express = require('express');
 import { Request, Response } from 'express';
-import { createProductController, deleteProductController, getAllProductController, updateProductController } from './controller';
+import { createProductController, deleteProductController, getAllProductController, getProductByIdController, updateProductController } from './controller';
 // import { createFurnitureController, deleteFurnitureController, getAllFurnitureController, updateFurnitureController } from './controller';
 
 const router: express.Router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
 	const response = await getAllProductController()
+	res.json(response);
+})
+router.get('/getById/:id', async (req: Request, res: Response) => {
+	const response = await getProductByIdController(req.body)
 	res.json(response);
 })
 
@@ -25,6 +29,5 @@ router.delete('/detele', async (req: Request, res: Response) => {
 	res.json(response);
 })
 
-console.log(process.env.JWT_SECRET_KEY)
 
 export { router }

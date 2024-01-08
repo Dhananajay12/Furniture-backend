@@ -8,14 +8,25 @@ interface FurnitureUpdateRequest {
 
 const getAllProductController = async () => {
 	try {
-		const getAllFurnitureData = await Products.read.find();
+		const getAllProductData = await Products.read.find();
 
-		return customResponse('Successfully fetched furnitures data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getAllFurnitureData, '');
+		return customResponse('Successfully fetched products data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getAllProductData, '');
 
 	} catch (err: any) {
 		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
 	}
 }
+const getProductByIdController = async (req: FurnitureUpdateRequest) => {
+	try {
+		const getProductData = await Products.read.findOne({ _id: req._id});
+
+		return customResponse('Successfully fetched product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getProductData, '');
+
+	} catch (err: any) {
+		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
+	}
+}
+
 
 const createProductController = async (req: object) => {
 	try {
@@ -23,7 +34,7 @@ const createProductController = async (req: object) => {
 			...req
 		});
 
-		return customResponse('Successfully fetched furnitures data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, createData, '');
+		return customResponse('Successfully create product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, createData, '');
 
 	} catch (err: any) {
 		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
@@ -33,23 +44,23 @@ const createProductController = async (req: object) => {
 
 const updateProductController = async (req: FurnitureUpdateRequest) => {
 	try {
-		const createData = await Products.write.findByIdAndUpdate(req._id, { ...req }, { new: true });
+		const updateData = await Products.write.findByIdAndUpdate(req._id, { ...req }, { new: true });
 
-		return customResponse('Successfully fetched furnitures data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, createData, '');
+		return customResponse('Successfully update product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, updateData, '');
 
 	} catch (err: any) {
-		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
+		return customResponse('Failed to update data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
 	}
 }
 
 const deleteProductController = async (req: FurnitureUpdateRequest) => {
 	try {
-		const createData = await Products.write.findByIdAndUpdate(req._id);
+		const createData = await Products.write.findByIdAndDelete(req._id);
 
-		return customResponse('Successfully fetched furnitures data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, createData, '');
+		return customResponse('Successfully delete', APIConstants.StatusCode.Ok, APIConstants.Status.Success, createData, '');
 
 	} catch (err: any) {
-		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
+		return customResponse('Failed to delete data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
 	}
 }
 
@@ -58,5 +69,6 @@ export {
 	getAllProductController,
 	createProductController,
 	updateProductController,
-	deleteProductController
+	deleteProductController,
+	getProductByIdController
 }
