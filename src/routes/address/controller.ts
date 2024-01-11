@@ -1,0 +1,35 @@
+import { APIConstants, customResponse } from "../../helper/ApiResponse";
+import { Address } from "../../model";
+
+
+
+interface Address {
+	reciverName: string,
+	tag: string
+	line_1: string,
+	line_2: string,
+	postcode: Number,
+	city: string,
+	state: string,
+	country: string,
+	phone: Number,
+}
+
+const createAddress = async (req: Address) => {
+
+	try {
+		const { reciverName, tag, line_1, line_2, postcode, city, state, country, phone } = req;
+
+		if (!reciverName || !tag || !line_1 || !line_2 || !postcode || !city || !state || !country! || !phone) throw new Error("please provide all fields")
+
+
+		const address = await Address.write.create({ ...req })
+
+		return customResponse("error while creating address", APIConstants.StatusCode.Ok, APIConstants.Status.Success, address, '')
+
+	} catch (err: any) {
+		return customResponse("error while creating address", APIConstants.StatusCode.BadRequest, APIConstants.Status.Failure, {}, err.message)
+	}
+}
+
+export { createAddress }

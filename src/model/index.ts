@@ -1,4 +1,5 @@
 import { readDB, writeDB } from "../../connection";
+import { AddressSchema } from "./Address";
 import { AutoIncrementSchema } from "./AutoIncrement";
 import { categorySchema } from "./Category";
 import { productVariantSchema } from "./ProductVariant";
@@ -23,17 +24,21 @@ const Category = {
 	read: readDB.model('category', categorySchema),
 	write: writeDB.model('category', categorySchema)
 }
+
 const Autoincrement = {
 	read: readDB.model('autoIncrement', AutoIncrementSchema),
 	write: writeDB.model('autoIncrement', AutoIncrementSchema)
 }
-
-
+const Address = {
+	read: readDB.model('address', AddressSchema),
+	write: writeDB.model('address', AddressSchema)
+}
 
 export {
 	Products,
 	Category,
 	User,
 	Autoincrement,
-	ProductVariant
+	ProductVariant,
+	Address
 }
