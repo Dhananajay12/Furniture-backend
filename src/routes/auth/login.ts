@@ -12,8 +12,8 @@ router.post('/login', async (req: Request, res: Response) => {
 
 router.post('/register', async (req: Request, res: Response) => {
 
-	const { fullName,phone , email, password } = req.body
-	const response = await registerController(fullName, phone, email, password)
+	const { first_name, last_name,phone , email, password } = req.body
+	const response = await registerController(first_name, last_name, phone, email, password)
 	res.json(response);
 })
 

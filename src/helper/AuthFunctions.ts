@@ -17,7 +17,8 @@ interface Auth {
 
 interface UserToken {
 	_id: string;
-	fullName: string,
+	first_name: string,
+	last_name: string,
 	phone: number,
 	email: string,
 	role: string;
@@ -50,7 +51,8 @@ const matchPassword = async (email: string, password: string) => {
 
 		const userData = {
 			_id: user._id.toString(),
-			fullName: user.fullName,
+			first_name: user.first_name,
+			last_name: user.last_name,
 			phone: user.phone,
 			email: user.email,
 			role: user.role

@@ -1,7 +1,7 @@
 import { APIConstants, customResponse } from "../../helper/ApiResponse"
 import matchPassword from "../../helper/AuthFunctions"
 import { User } from "../../model"
-
+import crypto from 'crypto'
 
 const loginController = async (email: string, password: string) => {
 
@@ -22,7 +22,7 @@ const registerController = async (first_name: string, last_name: string, phone: 
 
 		if (!first_name || !last_name || !phone || !email || !password) throw new Error('please provide all fields');
 
-		const userData = await User.write.create({ first_name, last_name, phone, email, password })
+		const userData = await User.write.create({ uid: crypto.randomUUID() ,first_name, last_name, phone, email, password })
 
 		return customResponse("Successfully register ", APIConstants.StatusCode.Ok, APIConstants.Status.Success, userData, '')
 

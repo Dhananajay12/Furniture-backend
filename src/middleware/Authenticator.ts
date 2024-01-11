@@ -18,7 +18,11 @@ const authencatorMiddleware = (req: Request, res: Response, next: NextFunction) 
 		}
 
 		const verified = jwt.verify(token, jwtSecretKey as Secret);
+   
+		// res.user = verified
+		console.log(verified )
 
+		next();
 	} catch (err) {
 		console.log(err)
 	}

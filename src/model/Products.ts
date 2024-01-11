@@ -35,5 +35,18 @@ const productSchema = new mongoose.Schema<FurnitureDocument>({
 	mostLoved: { type: Boolean, default: false },
 }, { timestamps: true })
 
+productSchema
+	.pre('find', function (next) {
+		this.populate('category');
+		this.populate('productVariant');
+		next();
+	})
+	.pre('findOne', function (next) {
+		this.populate('category');
+		this.populate('productVariant');
+		next();
+	});
+
+
 export { productSchema }
 // export const Furniture = mongoose.model('furniure', furnitureSchema);

@@ -18,7 +18,7 @@ const getAllProductController = async () => {
 }
 const getProductByIdController = async (req: FurnitureUpdateRequest) => {
 	try {
-		const getProductData = await Products.read.findOne({ _id: req._id});
+		const getProductData = await Products.read.findOne({ _id: req._id });
 
 		return customResponse('Successfully fetched product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getProductData, '');
 
@@ -63,6 +63,31 @@ const deleteProductController = async (req: FurnitureUpdateRequest) => {
 		return customResponse('Failed to delete data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
 	}
 }
+const getProductBySearch = async (serach: any) => {
+	try {
+
+		const searchTerm = serach;
+
+		if (!searchTerm) throw new Error("Please provide a search term");
+
+		const regex = new RegExp(searchTerm, 'i'); // 'i' for case-insensitive matching
+
+		const data = await Products.write.find({
+			$or: [
+				{ name: { $regex: regex } },
+				{ description: { $regex: regex } },
+				{ category: { $elemMatch: { $regex: regex } } },
+			]
+		}).sort({ _id: -1 });
+
+		return customResponse('Successfully delete', APIConstants.StatusCode.Ok, APIConstants.Status.Success, data, '');
+
+	} catch (err: any) {
+		return customResponse('Failed to delete data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
+	}
+}
+
+
 
 
 export {
@@ -70,5 +95,6 @@ export {
 	createProductController,
 	updateProductController,
 	deleteProductController,
-	getProductByIdController
+	getProductByIdController,
+	getProductBySearch
 }
