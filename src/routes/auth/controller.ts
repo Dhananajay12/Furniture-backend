@@ -9,7 +9,7 @@ const loginController = async (email: string, password: string) => {
 		const data = await matchPassword(email, password)
 
 		if (data.status === 400) throw new Error(data.message);
-	
+
 		return customResponse("login Successfully", APIConstants.StatusCode.Ok, APIConstants.Status.Success, data, '')
 	} catch (err: any) {
 		return customResponse("Error while login", APIConstants.StatusCode.BadRequest, APIConstants.Status.Failure, {}, err.message)
@@ -17,12 +17,12 @@ const loginController = async (email: string, password: string) => {
 }
 
 
-const registerController = async (fullName: string, phone: number, email: string, password: string) => {
+const registerController = async (first_name: string, last_name: string, phone: number, email: string, password: string) => {
 	try {
 
-		if (!fullName || !phone || !email || !password) throw new Error('please provide all fields');
+		if (!first_name || !last_name || !phone || !email || !password) throw new Error('please provide all fields');
 
-		const userData = await User.write.create({ fullName, phone, email, password })
+		const userData = await User.write.create({ first_name, last_name, phone, email, password })
 
 		return customResponse("Successfully register ", APIConstants.StatusCode.Ok, APIConstants.Status.Success, userData, '')
 
