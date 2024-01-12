@@ -13,7 +13,7 @@ interface Address {
 	phone: Number,
 }
 
-const createAddress = async (req: Address ) => {
+const createAddress = async (req: Address) => {
 	try {
 		const { reciverName, tag, line_1, line_2, postcode, city, state, country, phone } = req;
 
@@ -34,9 +34,9 @@ const getAddress = async (req: any) => {
 	try {
 		const { user } = req;
 
-		const address = await Address.read.find({ uid: user.userId })
+		const address = await Address.read.find({ uid: user._id })
 
-		return customResponse("error while creating address", APIConstants.StatusCode.Ok, APIConstants.Status.Success, address, '')
+		return customResponse("Successfully Fetched", APIConstants.StatusCode.Ok, APIConstants.Status.Success, address, '')
 
 	} catch (err: any) {
 		return customResponse("error while creating address", APIConstants.StatusCode.BadRequest, APIConstants.Status.Failure, {}, err.message)

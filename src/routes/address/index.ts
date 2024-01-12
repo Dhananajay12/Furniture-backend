@@ -11,6 +11,7 @@ router.post('/create', async (req: Request, res: Response) => {
 })
 
 router.get('/getAddress', async (req: Request, res: Response) => {
+
 	const reponse = await getAddress(req)
 	res.json(reponse)
 
