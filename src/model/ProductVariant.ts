@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 import { writeDB } from "../../connection";
 import { autoIncrement } from "../helper/AutoIncrement";
 
-interface ProductVariant {
+export interface ProductVariant {
 	productVariantId: number,
 	productId: number,
 	name: string

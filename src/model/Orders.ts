@@ -5,6 +5,7 @@ interface SchemaElement {
 	status: string;
 	total: number;
 	payment_transaction_id: string;
+	razorpay_order_id: string;
 	shipping: {
 		first_name: string,
 		last_name: string,
@@ -67,6 +68,7 @@ const orderSchema = new Schema<SchemaElement>({
 	total: Number,
 	shipping: Shipping,
 	billing: Billing,
+	razorpay_order_id:String,
 })
 
 export { orderSchema }

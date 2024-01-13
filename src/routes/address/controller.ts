@@ -43,11 +43,10 @@ const getAddress = async (req: any) => {
 	}
 }
 
-const getAddressById = async (req: any) => {
+const getAddressById = async (id: any) => {
 	try {
-		const { user } = req;
 
-		const address = await Address.read.find({ _id: req.params.id, user: user.userId })
+		const address = await Address.read.find({ _id: id })
 
 		return customResponse("error while creating address", APIConstants.StatusCode.Ok, APIConstants.Status.Success, address, '')
 

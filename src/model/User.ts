@@ -5,6 +5,7 @@ import { createHmac, randomBytes } from 'crypto'
 
 interface UserDocument extends Document {
 	first_name: string,
+	uid: string,
 	last_name: string,
 	phone: number,
 	email: string,
@@ -14,6 +15,7 @@ interface UserDocument extends Document {
 }
 
 const userSchema = new mongoose.Schema<UserDocument>({
+	uid: { type: String, required: true },
 	first_name: { type: String, required: true },
 	last_name: { type: String, required: true },
 	phone: {
