@@ -37,8 +37,8 @@ const Address = {
 }
 
 const Order = {
-	read: readDB.model('address', orderSchema),
-	write: writeDB.model('address', orderSchema)
+	read: readDB.model('order', orderSchema),
+	write: writeDB.model('order', orderSchema)
 }
 const Coupon = {
 	read: readDB.model('coupon', couponSchema),
