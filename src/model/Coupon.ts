@@ -1,13 +1,13 @@
 import { Schema } from "mongoose"
 
-interface Coupon {
+export interface Coupon {
 	code: string,
 	description: string
 	discountType: string
 	discountAmount: number
-	applyByDefault: Boolean,
+	applyByDefault?: Boolean,
 	minimumAmount: Number,
-	showCoupon: Boolean,
+	showCoupon?: Boolean,
 }
 
 const couponSchema = new Schema<Coupon>({
@@ -15,7 +15,7 @@ const couponSchema = new Schema<Coupon>({
 	description: { type: String, required: true },
 	discountType: { type: String, required: true },
 	discountAmount: { type: Number, required: true },
-	applyByDefault: { type: Boolean, required: true },
+	applyByDefault: { type: Boolean, default: true },
 	minimumAmount: { type: Number, required: true },
 	showCoupon: { type: Boolean, default: false },
 }, { timestamps: true })
