@@ -34,4 +34,17 @@ const authencatorMiddleware = (req: Request, res: Response, next: NextFunction) 
 
 }
 
-export { authencatorMiddleware }
+function restrictTo(roles = ['']) {
+
+	return function (req: Request, res: Response, next: NextFunction) {
+		if (!req.user.role) return customResponse("user is not present in request", APIConstants.StatusCode.BadRequest, APIConstants.Status.Failure, {}, "user is not present in request")
+
+		if (req.user?.role && !roles.includes(req.user?.role)) return customResponse("UnAuthorized", APIConstants.StatusCode.BadRequest, APIConstants.Status.Failure, {}, "UnAuthorized")
+
+		return next();
+	}
+
+}
+
+
+export { authencatorMiddleware, restrictTo }
