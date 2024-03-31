@@ -7,7 +7,6 @@ import http from 'http'
 
 // authencatorMiddleware
 
-
 dotenv.config()
 
 const app: Express = express();
@@ -16,11 +15,13 @@ const server = http.createServer(app)
 app.use(express.json())
 app.use('/api/v3', router)
 
-
+app.get('/' , (req, res) =>{
+ res.json({success:"heyyy"})
+//  res.send("heyyy")
+})
 
 connections();
 
 server.listen(4000, async  () => {
-
 	console.log('listing on port 4000');
 })
