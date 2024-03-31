@@ -16,7 +16,7 @@ app.use(express.json())
 app.use('/api/v3', router)
 
 app.get('/' , (req, res) =>{
- res.json({success:"2222"})
+ res.json({success:true , status:'success'})
 //  res.send("heyyy")
 })
 
