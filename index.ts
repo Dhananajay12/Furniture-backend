@@ -4,6 +4,7 @@ import { Express,} from "express";;
 import { router } from "./src/routes";
 import dotenv from 'dotenv';
 import http from 'http'
+import cors from 'cors'
 
 // authencatorMiddleware
 
@@ -11,6 +12,7 @@ dotenv.config()
 
 const app: Express = express();
 const server = http.createServer(app)
+app.use(cors());
 
 app.use(express.json())
 app.use('/api/v3', router)
