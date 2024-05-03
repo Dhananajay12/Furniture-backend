@@ -16,9 +16,9 @@ const getAllProductController = async () => {
 		return customResponse('Failed to fetched data', APIConstants.StatusCode.InternalServerError, APIConstants.Status.Failure, {}, err.message);
 	}
 }
-const getProductByIdController = async (req: FurnitureUpdateRequest) => {
+const getProductByIdController = async (id: string) => {
 	try {
-		const getProductData = await Products.read.findOne({ _id: req._id }).populate('category productVariantId');
+		const getProductData = await Products.read.findOne({ _id: id }).populate('category productVariantId');
 
 		return customResponse('Successfully fetched product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getProductData, '');
 

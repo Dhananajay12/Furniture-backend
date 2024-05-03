@@ -10,7 +10,7 @@ router.get('/', async (req: Request, res: Response) => {
 	res.json(response);
 })
 router.get('/getById/:id', async (req: Request, res: Response) => {
-	const response = await getProductByIdController(req.body)
+	const response = await getProductByIdController(req.params.id)
 	res.json(response);
 })
 
