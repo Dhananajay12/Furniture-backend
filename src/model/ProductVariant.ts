@@ -13,7 +13,8 @@ export interface ProductVariant {
 	length: number
 	breadth: number
 	height: number
-	inStockCount: number
+	inStockCount: number,
+	star:number
 }
 
 const productVariantSchema = new Schema<ProductVariant>({
@@ -23,6 +24,7 @@ const productVariantSchema = new Schema<ProductVariant>({
 	sku: { type: String, unique: true },
 	price: { type: Number, },
 	salePrice: { type: Number, },
+	star: { type: Number, default: 0 },
 	weight: { type: Number, default: 0 },
 	length: { type: Number, default: 0 },
 	breadth: { type: Number, default: 0 },

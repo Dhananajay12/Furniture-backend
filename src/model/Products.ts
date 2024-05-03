@@ -11,6 +11,7 @@ interface FurnitureDocument extends Document {
 	inStock: boolean;
 	image?: string;
 	description?: string;
+	star:number;
 	mostLoved: boolean;
 	price: number;
 	salePrice: number;
@@ -28,6 +29,8 @@ const productSchema = new mongoose.Schema<FurnitureDocument>({
 		type: [Schema.Types.ObjectId],
 		ref: 'productVariant'
 	},
+	salePrice: { type: Number, required: true, default: 0 },
+	star: { type: Number, required: true, default: 0 },
 	price: { type: Number, required: true, default: 0 },
 	description: { type: String, required: true },
 	inStock: { type: Boolean, required: true, default: true },
