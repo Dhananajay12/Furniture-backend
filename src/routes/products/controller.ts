@@ -8,7 +8,7 @@ interface FurnitureUpdateRequest {
 
 const getAllProductController = async () => {
 	try {
-		const getAllProductData = await Products.read.find();
+		const getAllProductData = await Products.read.find().populate('category productVariantId');
 
 		return customResponse('Successfully fetched products data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getAllProductData, '');
 
@@ -18,7 +18,7 @@ const getAllProductController = async () => {
 }
 const getProductByIdController = async (req: FurnitureUpdateRequest) => {
 	try {
-		const getProductData = await Products.read.findOne({ _id: req._id });
+		const getProductData = await Products.read.findOne({ _id: req._id }).populate('category productVariantId');
 
 		return customResponse('Successfully fetched product data', APIConstants.StatusCode.Ok, APIConstants.Status.Success, getProductData, '');
 
